@@ -2,15 +2,12 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudentsList.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentsList.Controllers
 {
-    public class HomeController:Controller
+    public class HomeController : Controller
     {
         StudentGroupContext Context;
 
@@ -26,9 +23,9 @@ namespace StudentsList.Controllers
             var strudentGroup = Context.Groups.Include(p => p.Students);
             return View(strudentGroup.ToList());
         }
-        
 
-        public IActionResult AddOrEdit( int id)
+
+        public IActionResult AddOrEdit(int id)
         {
             SelectList groups = new SelectList(Context.Groups, "Id", "GroupName");
 
@@ -38,7 +35,28 @@ namespace StudentsList.Controllers
             return View(Context.Students.Find(id));
         }
 
-        //[HttpPost]
-        ////public async
+        [HttpPost]
+        public async Task<IActionResult> AddOrEdit([Bind("FullName,GroupId,Id")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                if (student.Id == 0)
+                    Context.Add(student);
+                else
+                    Context.Update(student);
+
+                await Context.SaveChangesAsync();
+
+                return RedirectToRoute(new { controller = "Home", action = "Home" });
+            }
+            return View(student);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            Context.Students.Remove(Context.Students.FirstOrDefault(x => x.Id == id));
+            Context.SaveChanges();
+            return RedirectToRoute(new { controller = "Home", action = "Home" });
+        }
     }
 }
