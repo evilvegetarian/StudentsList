@@ -19,6 +19,8 @@ namespace StudentsList.Controllers
 
         public IActionResult Home()
         {
+            var d = Context.Students.Where(s => s.GroupId == 1).ToList();
+
             var strudentGroup = Context.Groups.Include(p => p.Students);
             return View(strudentGroup.ToList());
         }
