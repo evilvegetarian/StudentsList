@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using StudentsList.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +26,19 @@ namespace StudentsList.Controllers
             var strudentGroup = Context.Groups.Include(p => p.Students);
             return View(strudentGroup.ToList());
         }
+        
+
+        public IActionResult AddOrEdit( int id)
+        {
+            SelectList groups = new SelectList(Context.Groups, "Id", "GroupName");
+
+            ViewBag.Groups = groups;
+            if (id == 0)
+                return View(new Student());
+            return View(Context.Students.Find(id));
+        }
+
+        //[HttpPost]
+        ////public async
     }
 }

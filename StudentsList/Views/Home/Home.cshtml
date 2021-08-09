@@ -2,6 +2,7 @@
 @{ 
     ViewData["Title"] = "Home Page";
 }
+<a asp-controller="Home" asp-action="AddOrEdit">Add student</a>
 
 
 @foreach (var group in Model)
@@ -13,7 +14,7 @@
         {
             <p>
                 @student.FullName
-                <a href="">Edit</a>
+                <a asp-controller="Home" asp-action="AddOrEdit">Edit</a>
                 <a href="">Delete</a>
             </p>
         }

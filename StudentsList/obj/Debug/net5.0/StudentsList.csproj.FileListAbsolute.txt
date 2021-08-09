@@ -140,3 +140,4 @@ C:\Users\veget\source\repos\StudentsList\StudentsList\bin\Debug\net5.0\runtimes\
 C:\Users\veget\source\repos\StudentsList\StudentsList\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\veget\source\repos\StudentsList\StudentsList\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\veget\source\repos\StudentsList\StudentsList\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\veget\source\repos\StudentsList\StudentsList\obj\Debug\net5.0\Razor\Views\Home\AddOrEdit.cshtml.g.cs
