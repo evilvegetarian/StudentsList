@@ -18,7 +18,7 @@ namespace StudentsList.Controllers
 
         public IActionResult Home()
         {
-            var d = Context.Students.Where(s => s.GroupId == 1).ToList();
+            //var d = Context.Students.Where(s => s.GroupId == 1).ToList();
 
             var strudentGroup = Context.Groups.Include(p => p.Students);
             return View(strudentGroup.ToList());
@@ -32,6 +32,7 @@ namespace StudentsList.Controllers
             ViewBag.Groups = groups;
             if (id == 0)
                 return View(new Student());
+
             return View(Context.Students.Find(id));
         }
 
